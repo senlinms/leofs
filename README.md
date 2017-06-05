@@ -1,6 +1,8 @@
-# LeoFS - The Lion of Storage Systems
+# <a href="http://leo-project.net/leofs/" target="_blank">LeoFS</a> - A Storage System for a <a href="https://en.wikipedia.org/wiki/Data_lake" target="_blank">Data Lake</a> and the Web
 
-![LeoFS Logo](http://leo-project.net/leofs/docs/_static/leofs-logo-small.png)
+[![Join the chat at https://gitter.im/leo-project/leofs](https://badges.gitter.im/leo-project/leofs.svg)](https://gitter.im/leo-project/leofs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Release](https://img.shields.io/badge/release-v1.3.4-green.svg?style=flat)](https://github.com/leo-project/leofs/releases/tag/1.3.4) [![Build Status](https://travis-ci.org/leo-project/leofs.svg?branch=master)](http://travis-ci.org/leo-project/leofs)
+
+![LeoFS Logo](https://leo-project.net/leofs/docs-old/_static/leofs-logo-small.png)
 
 ## Overview
 
@@ -13,28 +15,30 @@ LeoFS is supporting the following features:
   * **S3-API Support**
       * LeoFS is an Amazon S3 compatible storage system.
       * Switch to LeoFS to decrease your cost from more expensive public-cloud solutions.
+  * **REST-API Support**
+      * To easily access LeoFS with [REST-API](https://leo-project.net/leofs/docs/admin/protocols/rest/)
   * **NFS Support**
       * NFS support was provided from LeoFS v1.1, the current status of which is beta.
 * **Large Object Support**
-  * LeoFS can handle files with more than GB
+  * LeoFS covers handling large size objects.
 * **Multi Data Center Replication**
   * LeoFS is a highly scalable, fault-tolerant distributed file system without SPOF.
-  * LeoFS's cluster can be viewed as ONE-HUGE storage. It consists of a set of loosely connected nodes.
+  * LeoFS's cluster can be viewed as a huge capacity storage. It consists of a set of loosely connected nodes.
   * We can build a global scale storage system with easy operations
 
 ## Architecture
 
-![leofs-architecture-1](http://leo-project.net/leofs/docs/_images/leofs-architecture.0012.jpg)
+![leofs-architecture-1](https://leo-project.net/leofs/docs/assets/leofs-architecture.0012.jpg)
 
-LeoFS consists of 3 applications - [LeoFS Storage](https://github.com/leo-project/leo_storage), [LeoFS Gateway](https://github.com/leo-project/leo_gateway) and [LeoFS Manager](https://github.com/leo-project/leo_manager) which depend on Erlang.
+LeoFS consists of three core components - [LeoStorage](https://leo-project.net/leofs/docs/architecture/leo_storage/), [LeoGateway](https://leo-project.net/leofs/docs/architecture/leo_gateway/) and [LeoManager](https://leo-project.net/leofs/docs/architecture/leo_manager/) which depend on Erlang.
 
-[LeoFS Gateway](https://github.com/leo-project/leo_gateway) handles http-request and http-response from any clients when using REST-API OR S3-API. Also, it is already built in the object-cache mechanism (memory and disk cache).
+[LeoGateway](https://leo-project.net/leofs/docs/architecture/leo_gateway/) handles http-request and http-response from any clients when using REST-API OR S3-API. Also, it is already built in the object-cache mechanism (memory and disk cache).
 
-[LeoFS Storage](https://github.com/leo-project/leo_storage) handles GET, PUT and DELETE objects as well as metadata. Also, it has replicator, recoverer and queueing mechanism in order to keep running a storage node and realise eventual consistency.
+[LeoStorage](https://leo-project.net/leofs/docs/architecture/leo_storage/) handles GET, PUT and DELETE objects as well as metadata. Also, it has replicator, recoverer and queueing mechanism in order to keep running a storage node and realise eventual consistency.
 
-[LeoFS Manager](https://github.com/leo-project/leo_manager) always monitors LeoFS Gateway and LeoFS Storage nodes. The main monitoring status are Node status and RING’s checksum in order to realise to keep high availability and keep data consistency.
+[LeoManager](https://leo-project.net/leofs/docs/architecture/leo_manager/) always monitors LeoGateway and LeoStorage nodes. The main monitoring status are Node status and RING’s checksum in order to realise to keep high availability and keep data consistency.
 
-We can access LeoFS server using <a target="_blank" href="http://www.leofs.org/docs/s3_client.html">S3 clients and S3 client libries of each programming language</a>.
+You can access a LeoFS system using Amazon S3 clients and the SDK</a>.
 
 
 ## Slide
@@ -43,7 +47,7 @@ The presentation - <a href="https://www.slideshare.net/rakutentech/scaling-and-h
 
 ## GOALs
 
-* LeoFS aims to provide all of 3-HIGHs as follow:
+* LeoFS has been aiming to provide **high reliability**, **high scalability**, and **high cost performance ratio**:
   * HIGH Reliability
      * Nine nines - Operating ratios is 99.9999999%
   * High Scalability
@@ -55,7 +59,7 @@ The presentation - <a href="https://www.slideshare.net/rakutentech/scaling-and-h
 
 ## Further Reference
 
-* <a target="_blank" href="http://leo-project.net/leofs/docs/">LeoFS Documentation</a>.
+* <a target="_blank" href="https://leo-project.net/leofs/docs/">LeoFS Documentation</a>.
 
 
 ## Build LeoFS with LeoFS Packages
@@ -63,19 +67,17 @@ The presentation - <a href="https://www.slideshare.net/rakutentech/scaling-and-h
 LeoFS packages have been already provided on the Web. You're able to easily install LeoFS on your environments.
 
 * LeoProject
-    * <a target="_blank" href="http://leo-project.net/leofs/download.html">CentOS-7.0</a>
-    * <a target="_blank" href="http://leo-project.net/leofs/download.html">CentOS-6.x</a>
-    * <a target="_blank" href="http://leo-project.net/leofs/download.html">14.04 and later</a>
+    * <a target="_blank" href="https://leo-project.net/leofs/download.html">CentOS 6.x, 7.x</a>
+    * <a target="_blank" href="https://leo-project.net/leofs/download.html">Ubuntu 14.04, 16.04</a>
 * Community
     * <a target="_blank" href="http://www.freshports.org/databases/leofs">FreeBSD</a>
 
-<a target="_blank" href="http://leo-project.net/leofs/docs/getting_started.html">Here</a> is the installation manual.
+<a target="_blank" href="https://leo-project.net/leofs/docs/installation/quick/">Here</a> is the installation manual.
 
 
 ## Build LeoFS From Source (For Developers)
 
 Here, we explain how to build LeoFS from source code.
-
 First, you have to install the following packages to build Erlang and LeoFS.
 
 ```bash
@@ -91,20 +93,20 @@ Then, install Erlang.
 ##
 ## 1. Install libatomic
 ##
-$ wget http://www.hpl.hp.com/research/linux/atomic_ops/download/libatomic_ops-7.2d.tar.gz
-$ tar xzvf libatomic_ops-7.2d.tar.gz
-$ cd libatomic_ops-7.2d
+$ wget http://www.ivmaisoft.com/_bin/atomic_ops/libatomic_ops-7.4.4.tar.gz
+$ tar xzvf libatomic_ops-7.4.4.tar.gz
+$ cd libatomic_ops-7.4.4
 $ ./configure --prefix=/usr/local
 $ make
 $ sudo make install
 
 ##
-## 2. Install Erlang (17.5)
+## 2. Install Erlang (18.3)
 ##
-$ wget http://www.erlang.org/download/otp_src_17.5.tar.gz
-$ tar xzf otp_src_17.5.tar.gz
-$ cd otp_src_17.5
-$ ./configure --prefix=/usr/local/erlang/17.5 \
+$ wget http://erlang.org/download/otp_src_18.3.tar.gz
+$ tar xzf otp_src_18.3.tar.gz
+$ cd otp_src_18.3
+$ ./configure --prefix=/usr/local/erlang/18.3 \
               --enable-smp-support \
               --enable-m64-build \
               --enable-halfword-emulator \
@@ -123,7 +125,7 @@ $ sudo make install
 ##
 $ vi ~/.profile
     ## append the follows:
-    export ERL_HOME=/usr/local/erlang/17.5
+    export ERL_HOME=/usr/local/erlang/18.3
     export PATH=$PATH:$ERL_HOME/bin
 
 $ source ~/.profile
@@ -142,9 +144,7 @@ $ ./git_checkout.sh develop
 Then, build LeoFS with the following commands.
 
 ```bash
-$ make clean
-$ make
-$ make release
+$ make && make release_for_test
 ```
 
 Now, you can find the LeoFS package as follow.
@@ -168,10 +168,10 @@ $ ./leofs-adm status
 -----------------------------------+----------
  Basic/Consistency level
 -----------------------------------+----------
-                    system version | 1.2.16
+                    system version | 1.3.4
                         cluster Id | leofs_1
                              DC Id | dc_1
-                    Total replicas | 2
+                    Total replicas | 1
           number of successes of R | 1
           number of successes of W | 1
           number of successes of D | 1
@@ -180,35 +180,39 @@ $ ./leofs-adm status
 -----------------------------------+----------
  Multi DC replication settings
 -----------------------------------+----------
-        max number of joinable DCs | 2
-           number of replicas a DC | 1
+ [mdcr] max number of joinable DCs | 2
+ [mdcr] total replicas per a DC    | 1
+ [mdcr] number of successes of R   | 1
+ [mdcr] number of successes of W   | 1
+ [mdcr] number of successes of D   | 1
 -----------------------------------+----------
  Manager RING hash
 -----------------------------------+----------
-                 current ring-hash | 3923d007
-                previous ring-hash | 3923d007
+                 current ring-hash |
+                previous ring-hash |
 -----------------------------------+----------
 
  [State of Node(s)]
 -------+--------------------------+--------------+----------------+----------------+----------------------------
  type  |           node           |    state     |  current ring  |   prev ring    |          updated at
 -------+--------------------------+--------------+----------------+----------------+----------------------------
-  S    | storage_0@127.0.0.1      | running      | 3923d007       | 3923d007       | 2015-10-30 09:44:11 +0900
+  S    | storage_0@127.0.0.1      | attached     |                |                | 2017-06-02 14:59:20 +0900
 -------+--------------------------+--------------+----------------+----------------+----------------------------
 
 $ ./leofs-adm start
 OK
 
 $ ./leofs-adm status
+ [System Confiuration]
 -----------------------------------+----------
  Item                              | Value
 -----------------------------------+----------
  Basic/Consistency level
 -----------------------------------+----------
-                    system version | 1.2.16
+                    system version | 1.3.4
                         cluster Id | leofs_1
                              DC Id | dc_1
-                    Total replicas | 2
+                    Total replicas | 1
           number of successes of R | 1
           number of successes of W | 1
           number of successes of D | 1
@@ -217,76 +221,99 @@ $ ./leofs-adm status
 -----------------------------------+----------
  Multi DC replication settings
 -----------------------------------+----------
-        max number of joinable DCs | 2
-           number of replicas a DC | 1
+ [mdcr] max number of joinable DCs | 2
+ [mdcr] total replicas per a DC    | 1
+ [mdcr] number of successes of R   | 1
+ [mdcr] number of successes of W   | 1
+ [mdcr] number of successes of D   | 1
 -----------------------------------+----------
  Manager RING hash
 -----------------------------------+----------
-                 current ring-hash | 3923d007
-                previous ring-hash | 3923d007
+                 current ring-hash | 433fe365
+                previous ring-hash | 433fe365
 -----------------------------------+----------
 
  [State of Node(s)]
 -------+--------------------------+--------------+----------------+----------------+----------------------------
  type  |           node           |    state     |  current ring  |   prev ring    |          updated at
 -------+--------------------------+--------------+----------------+----------------+----------------------------
-  S    | storage_0@127.0.0.1      | running      | 3923d007       | 3923d007       | 2015-10-30 09:44:11 +0900
-  G    | gateway_0@127.0.0.1      | running      | 3923d007       | 3923d007       | 2015-10-30 09:45:27 +0900
+  S    | storage_0@127.0.0.1      | running      | 433fe365       | 433fe365       | 2017-06-02 15:00:10 +0900
+  G    | gateway_0@127.0.0.1      | running      | 433fe365       | 433fe365       | 2017-06-02 15:00:12 +0900
 -------+--------------------------+--------------+----------------+----------------+----------------------------
-
-
 ```
 
 ## Build a LeoFS Cluster
 
-You can easily build a LeoFS cluster.
-
-Please refer <a target="_blank" href="http://www.leofs.org/docs/getting_started.html#quick-start-2-cluster">here</a>.
+You can easily build a LeoFS cluster. See <a target="_blank" href="https://leo-project.net/leofs/docs/installation/cluster/">here</a>.
 
 ## Configure LeoFS
 
-About the configuration of LeoFS, please refer <a target="_blank" href="http://www.leofs.org/docs/configuration.html">here</a>.
+About the configuration of LeoFS, See <a target="_blank" href="https://leo-project.net/leofs/docs/admin/settings/cluster/">here</a>.
 
 ## Benchmarking
 
-You can benchmark LeoFS with <a target="_blank" href="https://github.com/basho/basho_bench">Basho Bench</a>.
-
-<a target="_blank" href="http://www.leofs.org/docs/benchmark.html">Here</a> is a documentation to benchmark LeoFS.
+You can benchmark LeoFS with <a target="_blank" href="https://github.com/basho/basho_bench">Basho Bench</a>, and <a target="_blank" href="https://leo-project.net/leofs/docs/benchmark/README/">here</a> is a documentation to benchmark LeoFS.
 
 
 ## Integration Test
 
-We're able to easily check LeoFS with <a target="_blank" href="https://github.com/leo-project/leofs_test2">leofs_test</a> whether LeoFS has issues or not before getting installed LeoFS in your dev/staging/production environment(s).
+You can test LeoFS with <a target="_blank" href="https://github.com/leo-project/leofs_test2">leofs_test</a> whether LeoFS has issues or not before getting installed LeoFS in your dev/staging/production environment(s).
 
 
 ## Milestones
+### Version 1
 
-* *DONE* - v1.0 (Nov 2013 - May 2014)
+* *DONE* - [v1.0](https://github.com/leo-project/leofs/releases/tag/1.0.2)
     * Multi Data Center Replication
     * Increase compatibility S3-APIs#5
         * Other bucket operations
-* *DONE* - v1.1
-    * NFS Support *(alpha)*
+* *DONE* - [v1.1](https://github.com/leo-project/leofs/releases/tag/1.1.5)
+    * NFS v3 Support *(alpha)*
     * Improve Web GUI Console (Option)
-* *DONE* - v1.2
-    * NFS Support *(beta)*
+* *DONE* - [v1.2](https://github.com/leo-project/leofs/releases/tag/1.2.22)
+    * NFS v3 Support *(beta)*
     * Watchdog
-    * Auto-compaction
-* *On Going* - v1.4
-    * NFS Support *(stable)*
-        * Improve performance of the list objects
-        * NFS lock-option support
-    * Erasure Code
-    * Improve Web GUI console *(option)*
+    * Automated data-compaction
+* *DONE* - v1.3
+    * NFS v3 Support *(stable)*
     * Improve compatibility S3-APIs#6
-        * AWS Signature v4 support
-        * Objects Expiration into a bucket
-        * Versioning
-* v2.0
-    * NFS Support
-    * QoS Support *(Option)*
-    * Erasure Coding
+        * [AWS Signature v4](http://docs.aws.amazon.com/general/latest/gr/sigv4_changes.html) support (v1.3.0)
+        * Custom Metadata Support (v1.3.1)
+* *WIP* - v1.4
+    * Erasure Code
     * Improve compatibility S3-APIs#7
+        * [Server Side Object Encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
+* v1.5
+    * Hinted Hand-off
+    * LeoManager's cluster replaces from Erlang's mnesia dependensy to another implementation
+    * Integration with distributed computing frameworks
+        * Hadoop integration
+        * Spark integration
+
+### Version 2
+* v2.0
+    * NFS v3 Support *(stable)*
+        * Improve performance of the list objects, `the ls command`
+    * Improvement of the Multi Data Center Replication
+    * Searching objects by a custom-metadata
+    * Improve compatibility S3-APIs#8
+        * Objects Expiration into a Bucket
+        * Object Versioning
+    * Improve Web GUI console, <a href="https://github.com/leo-project/leo_center" target="_blank">LeoFS Center</a> *(option)*
+* v2.2
+    * NFS v4 Support
+    * Data Deduplication
+    * Improve compatibility S3-APIs#8
+
+
+## Versioning Policy
+
+LeoFS adheres to [the versioning policy](http://semver.org/) from v1.3.3.
+
+
+## Licensing
+
+LeoFS is licensed under the Apache License, Version 2.0. See LICENSE for the full license text.
 
 
 ## Sponsors

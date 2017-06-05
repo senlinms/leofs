@@ -5,7 +5,7 @@ COMPONENT=leo_gateway
 COMPONENT_PATH=../../package/$(COMPONENT_INTERNAL)
 DIR=$(STAGE_DIR)/$(COMPONENT)
 PKG_CATEGORY=leofs
-PKG_HOMEPAGE=http://www.leofs.org/
+PKG_HOMEPAGE=https://leo-project.net/leofs/
 DEPS="erlang>=16.1.2"
 
 include ../../deps/fifo_utils/priv/pkg.mk
@@ -28,5 +28,6 @@ prepare:
 	cp files/leo_gateway_snmp.config.1 $(DIR)/snmp/snmpa_gateway_1/leo_gateway_snmp.config
 
 clean: clean-pkg
+	-rm $(STAGE_DIR)/sbin/leofs-adm
 	-rm -r $(DIR)
 	-rm *.tgz
